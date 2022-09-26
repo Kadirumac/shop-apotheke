@@ -1,0 +1,76 @@
+@import "../../styles/variables";
+
+.repo-card {
+  border: none;
+  :hover {
+    background: $color-grey-dark;
+  }
+  &--header {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    height: 70px;
+  }
+
+  &--title {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    overflow: hidden;
+  }
+  &--img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  &--stars {
+    font-size: 12px;
+    text-align: justify;
+  }
+
+  &--text {
+    height: 85px;
+    font-size: 12px;
+    overflow: hidden;
+    text-align: justify;
+  }
+
+  .buttons {
+    border-top: 1px solid $color-grey-dark;
+    padding-top: 5px;
+  }
+
+  &--btn {
+    background: none;
+    border: none;
+    color: #000;
+    margin-right: 10px;
+    padding: 0 4px;
+  }
+
+  .bi {
+    color: $color-dark;
+  }
+  .star-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 5px;
+    justify-content: end;
+    cursor: pointer;
+
+    :hover {
+      background: none;
+    }
+    .star {
+      margin-left: 5px;
+      height: 22px;
+      width: 22px;
+    }
+
+    .star-favourite {
+      filter: invert(92%) sepia(74%) saturate(7403%) hue-rotate(342deg)
+        brightness(99%) contrast(96%);
+    }
+  }
+}
