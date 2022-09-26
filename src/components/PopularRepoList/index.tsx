@@ -39,7 +39,7 @@ export default function PopularRepoList() {
         ) : (
           popularRepoList?.map((item: any, index: number) => (
             <div
-              className="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 my-3"
+              className="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-3"
               key={index}
             >
               <SingleRepoCard repoData={item} />
