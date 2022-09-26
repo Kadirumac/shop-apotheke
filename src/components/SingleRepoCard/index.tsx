@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card, Image } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyFavouriteRepos } from "../../lib/LocalStoarge";
+import { strings } from "../../lib/constants";
+import { GithubRepo } from "../../lib/interfaces";
 import {
   selectRepoList,
   setMyFavoriteRepos,
 } from "../../reducers/RepoListSlice";
 import "./repo_card.scss";
-import star from "./star.svg";
+import star from "../../assets/images/star.svg";
 
-const SingleRepoCard = ({ repoData }) => {
+type SingleRepoCardProps = {
+  repoData: GithubRepo;
+};
+
+const SingleRepoCard = ({ repoData }: SingleRepoCardProps) => {
   const {
     id,
     owner,
@@ -21,27 +26,32 @@ const SingleRepoCard = ({ repoData }) => {
     homepage,
     stargazers_count,
   } = repoData;
-  const [starred, setStarred] = useState({});
+
+  const [starred, setStarred] = useState<GithubRepo>();
   const dispatch = useDispatch();
   const { myFavouriteRepos } = useSelector(selectRepoList);
-  console.log(getMyFavouriteRepos());
 
   const addFavouriteHandler = () => {
     if (starred) {
       //prevent adding the same card
-      const filteredRepos = myFavouriteRepos.filter((repo) => repo !== starred);
+      const filteredRepos: GithubRepo[] = myFavouriteRepos.filter(
+        (repo: GithubRepo) => repo !== starred
+      );
       dispatch(setMyFavoriteRepos(filteredRepos));
     } else {
       // add card if its not starred yet
-      const newStarredRepos = [...myFavouriteRepos, repoData];
+      const newStarredRepos: GithubRepo[] = [...myFavouriteRepos, repoData];
       dispatch(setMyFavoriteRepos(newStarredRepos));
     }
   };
+  console.log(myFavouriteRepos);
+  
 
   useEffect(() => {
-    let isStarred = myFavouriteRepos.find((repo) => repo.id === id);
+    let isStarred = myFavouriteRepos.find((repo: GithubRepo) => repo.id === id);
     setStarred(isStarred);
   }, [id, myFavouriteRepos]);
+
   return (
     <Card key={id} className="repo-card">
       <Card>
@@ -51,13 +61,13 @@ const SingleRepoCard = ({ repoData }) => {
         </Card.Header>
         <Card.Body className="repo-card--body">
           <Card.Text className="repo-card--stars">
-            {stargazers_count} Stars{" "}
-            <span className="text-secondary">since </span>
+            {stargazers_count} {strings.stars}
+            <span className="text-secondary">{strings.since} </span>
             <Moment format="DD-MM-YYYY">{created_at}</Moment>
           </Card.Text>
           <Card.Text className="repo-card--text">{description}</Card.Text>
           <div className="star-wrapper" onClick={addFavouriteHandler}>
-            <span>Add to favorite</span>
+            <span>{strings.addFavorite}</span>
             <img
               className={`star ${starred ? "star-favourite" : ""}`}
               src={star}
@@ -68,13 +78,16 @@ const SingleRepoCard = ({ repoData }) => {
             <a href={html_url} rel="noreferrer" target="_blank">
               <i className="bi bi-github" />
               <Button className="repo-card--btn" variant="secondary">
-                Github repo
+                {strings.githubBtn}
               </Button>
             </a>
             {homepage ? (
               <a href={homepage} rel="noreferrer" target="_blank">
                 <i className="bi bi-box-arrow-in-up-right" />
-                <Button className="repo-card--btn"> To website </Button>
+                <Button className="repo-card--btn">
+                  {" "}
+                  {strings.websiteBtn}{" "}
+                </Button>
               </a>
             ) : null}
           </div>

@@ -10,6 +10,8 @@ import { Spinner } from "react-bootstrap";
 import SingleRepoCard from "../SingleRepoCard";
 import { getPopularRepos } from "../../lib/fetchData";
 import "./repo_list.scss";
+import { strings } from "../../lib/constants";
+import { GithubRepo } from "../../lib/interfaces";
 
 export default function PopularRepoList() {
   const dispatch = useDispatch();
@@ -33,11 +35,11 @@ export default function PopularRepoList() {
         {loading ? (
           <div className="spinner">
             <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
+              <span className="visually-hidden">{strings.loading}</span>
             </Spinner>
           </div>
         ) : (
-          popularRepoList?.map((item: any, index: number) => (
+          popularRepoList?.map((item: GithubRepo, index: number) => (
             <div
               className="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-3"
               key={index}

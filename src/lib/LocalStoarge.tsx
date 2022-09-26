@@ -1,3 +1,4 @@
+import { GithubRepo } from "./interfaces";
 const MY_FAV_REPOS = "myFavouriteRepos";
 
 export const getMyFavouriteRepos = () => {
@@ -5,6 +6,6 @@ export const getMyFavouriteRepos = () => {
   return JSON.parse(favRepos);
 };
 
-export const setMyFavouriteRepos = (repos: any) => {
+export const setMyFavouriteRepos = (repos: GithubRepo[]) => {
   localStorage.setItem(MY_FAV_REPOS, JSON.stringify(repos));
 };

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
+import { RootState } from "../config/store";
 import { getMyFavouriteRepos, setMyFavouriteRepos } from "../lib/LocalStoarge";
+import { GithubRepo } from "../lib/interfaces";
 
 export interface RepoListState {
-  popularRepoList: any;
-  myFavouriteRepos: any;
+  popularRepoList: GithubRepo[] | [];
+  myFavouriteRepos: GithubRepo[] | [];
   loading: boolean;
 }
 
