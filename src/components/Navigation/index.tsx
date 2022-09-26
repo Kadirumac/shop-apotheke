@@ -1,5 +1,6 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { strings } from "../../lib/constants";
 import { languageList } from "../../lib/data";
 import { getPopularRepos } from "../../lib/fetchData";
 import { setPopularRepoList, setLoading } from "../../reducers/RepoListSlice";
@@ -14,6 +15,7 @@ function Navigation() {
     dispatch(setPopularRepoList(data));
     dispatch(setLoading(false));
   };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -25,10 +27,10 @@ function Navigation() {
             navbarScroll
           >
             <Nav.Link className="home-text" href="/">
-              Popular Repositories Home
+              {strings.popularPagesTitle}
             </Nav.Link>
             <Nav.Link className="home-text" href="/starred-repos">
-              My Favourite Repositories
+              {strings.myFavoritePagesTitle}
             </Nav.Link>
           </Nav>
           <Nav>
