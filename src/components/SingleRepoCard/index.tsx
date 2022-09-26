@@ -44,8 +44,6 @@ const SingleRepoCard = ({ repoData }: SingleRepoCardProps) => {
       dispatch(setMyFavoriteRepos(newStarredRepos));
     }
   };
-  console.log(myFavouriteRepos);
-  
 
   useEffect(() => {
     let isStarred = myFavouriteRepos.find((repo: GithubRepo) => repo.id === id);
@@ -69,7 +67,7 @@ const SingleRepoCard = ({ repoData }: SingleRepoCardProps) => {
           <div className="star-wrapper" onClick={addFavouriteHandler}>
             <span>{strings.addFavorite}</span>
             <img
-              className={`star ${starred ? "star-favourite" : ""}`}
+              className={`star ${starred ? "star-favourite" : null}`}
               src={star}
               alt="star"
             />
@@ -84,10 +82,7 @@ const SingleRepoCard = ({ repoData }: SingleRepoCardProps) => {
             {homepage ? (
               <a href={homepage} rel="noreferrer" target="_blank">
                 <i className="bi bi-box-arrow-in-up-right" />
-                <Button className="repo-card--btn">
-                  {" "}
-                  {strings.websiteBtn}{" "}
-                </Button>
+                <Button className="repo-card--btn">{strings.websiteBtn}</Button>
               </a>
             ) : null}
           </div>
