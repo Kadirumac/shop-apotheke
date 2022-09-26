@@ -4,8 +4,8 @@ import { getMyFavouriteRepos, setMyFavouriteRepos } from "../lib/LocalStoarge";
 import { GithubRepo } from "../lib/interfaces";
 
 export interface RepoListState {
-  popularRepoList: GithubRepo[] | [];
-  myFavouriteRepos: GithubRepo[] | [];
+  popularRepoList: GithubRepo[];
+  myFavouriteRepos: GithubRepo[];
   loading: boolean;
 }
 
